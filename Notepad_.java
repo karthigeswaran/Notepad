@@ -1,8 +1,7 @@
 package Notepad;
 
 import java.util.Scanner;
-//import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.lang.Thread;
 
 public class Notepad_ {
@@ -22,7 +21,7 @@ public class Notepad_ {
                     String content = scan.next();
                     System.out.println("Would you like to save(y/n): ");
                     String c = scan.next();
-                    if(c=="y"){
+                    if(c.equals("y")){
                         System.out.println("Enter file name:");
                         String name = scan.next();
                         FileWriter fw = null;
@@ -41,7 +40,29 @@ public class Notepad_ {
                     }                    
                     break;
                 case 2:
-                    
+                    File dir = new File("C:\\Users\\karthigeswaran\\Desktop\\practise\\java");
+                    File[] list = dir.listFiles();
+                    if(list!=null){
+                        for(File ls : list){
+                            System.out.println(ls.getName());
+                        }
+                        System.out.println("Enter File name to view (only .txt): ");
+                        String st = scan.next();
+                        try{
+                            FileReader fr = new FileReader(st+".txt");
+                            int i;
+                            while((i=fr.read())!=-1){
+                                System.out.print((char)i);
+                            }
+                            fr.close();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    else{
+                        System.out.println("Empty Directory");
+                    }
+                    break;
                 case 3:
                     break menu; 
                 default:
